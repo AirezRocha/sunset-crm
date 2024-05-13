@@ -1,0 +1,55 @@
+<form [formGroup]="prospect" validate (ngSubmit)="onSubmit()">
+  <input placeholder="Name" type="hidden" formControlName="id"  [(ngModel)]="model.id">
+  <mat-card class="shipping-card">
+    <mat-card-header>
+      <mat-card-title>Create Prospect</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Name" formControlName="name"  [(ngModel)]="model.name">
+            @if (prospect.controls['name'].hasError('required')) {
+            <mat-error>Name is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Document" formControlName="document" [(ngModel)]="model.document">
+            @if (prospect.controls['document'].hasError('required')) {
+            <mat-error>Document is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [matDatepicker]="picker" formControlName="birth" [(ngModel)]="model.birth">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker [dateClass]="dateClass" #picker></mat-datepicker>
+            @if (prospect.controls['birth'].hasError('required')) {
+            <mat-error>Birth is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="City" formControlName="city" [(ngModel)]="model.city">
+            @if (prospect.controls['city'].hasError('required')) {
+            <mat-error>City is <strong>required</strong></mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button class="btn btn-success" type="submit" mdbRipple>Submit</button>
+      <button mat-raised-button color="warn" (click)="onNoClick()">No Thanks</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
